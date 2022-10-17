@@ -8,23 +8,28 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
   if(window.ethereum){
   } else {
-    alert("Please install metamask extension!!")
+    alert("Please install Metamask extension!!")
   }
  
-const connectToMetamask = () => {
-  window.ethereum.request({method:'eth_requestAccounts'})
-  .then(res=>{
-    setWalletAddress(res);
-  })
+  const connectToMetamask = () => {
+    let chainId = Number(window.ethereum.chainId);
+    if(chainId === 97) {
+      window.ethereum.request({method:'eth_requestAccounts'})
+      .then(res=>{
+        setWalletAddress(res);
+      })
+
+    }else {
+      alert('Please change the network to BSC Testnet!')
+    }
 }
 useEffect(() => {
+
   window.ethereum.request({
       
     method:'eth_getBalance', 
     params: [`${walletAddress}`, 'latest']
 }).then(balance => {
-    
-    console.log(ethers.utils.formatEther(balance))
     setWalletBalance(ethers.utils.formatEther(balance))
     setStatus('Disconnect')
     setIsConnected(true)
@@ -68,7 +73,7 @@ const loading = () => {
   return (
     <div className="App loading">
       <div className='container'>
-        <div class="text-wrapper">
+        <div className="text-wrapper">
           <h1>
           <div className='content__img'></div>
           </h1>
