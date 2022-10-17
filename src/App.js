@@ -40,12 +40,12 @@ function disconnectMetamask() {
 }
 
 const loading = () => {
-  const container = document.querySelector(".container");
+  // const container = document.querySelector(".container");
   const textWrapper = document.querySelector(".text-wrapper");
   const text = document.querySelector(".text-wrapper h1");
   const textDimensions = textWrapper.getBoundingClientRect();
   
-  let screenLog = document.querySelector("#screen-log");
+  // let screenLog = document.querySelector("#screen-log");
   
   textWrapper.addEventListener("mousemove", (e) => animateOnMouseOver(e));
   
