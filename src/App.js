@@ -1,23 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React, {useEffect, useState} from 'react';
+import {ethers} from 'ethers';
 function App() {
+  const [ walletAddress, setWalletAddress] = useState('')
+  const [ walletBalance, setWalletBalance] = useState('')
+  if(window.ethereum){
+  } else {
+    alert("Please install metamask extension!!")
+  }
+ 
+const connectToMetamask = () => {
+  window.ethereum.request({method:'eth_requestAccounts'})
+  .then(res=>{
+    setWalletAddress(res);
+  })
+}
+useEffect(() => {
+  window.ethereum.request({
+      
+    method:'eth_getBalance', 
+    params: [`${walletAddress}`, 'latest']
+}).then(balance => {
+    
+    console.log(ethers.utils.formatEther(balance))
+    setWalletBalance(ethers.utils.formatEther(balance))
+})
+}, [walletAddress]) 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='connect-button'>
+        <div className='title-page'>Connect to a wallet</div>
+        <div className='meta-button' onClick={() => connectToMetamask()}>
+          Connect Metamask
+        </div>
+        <div className='address'>
+           <span className='title'> My address: 
+            </span>
+          {walletAddress}
+        </div>
+        <div className='address'>
+          
+          <span className='title'> My address: 
+            </span>
+          {walletBalance}
+        </div>
+      </div>
     </div>
   );
 }
