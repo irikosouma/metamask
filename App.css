@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  background-color: antiquewhite;
+}
+.connect-button {
+  width: 500px;
+  background-color:lightblue;
+  border: 3px solid gray;
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.connect-button:hover {
+  background-color:lemonchiffon;
+}
+.title-page {
+  font-size: 20px;
+  font-weight: 700;
+}
+.meta-button {
+  width: 100px;
+  margin-top: 10px;
+  background-color:wheat;
+  border: 3px solid cornsilk;
+  border-radius: 5px;
+  padding: 10px 20px;
+  transition: all 0.3s;
+} 
+.meta-button:hover {
+  background-color:skyblue;
+}
+.address {
+  width: fit-content;
+  color: coral;
+}
+.title {
+  font-weight: 700;
+  font-size: 14px;
+  color: black;
+  padding-right: 10px;
+}
